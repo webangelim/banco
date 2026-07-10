@@ -19,7 +19,7 @@ public class Usuario {
     @CPF
     @Size(min = 11, max = 11)
     @NotBlank
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 11)
     private String cpf;
 
     @Email
@@ -33,7 +33,6 @@ public class Usuario {
     private String senha;
 
     public Usuario(UUID id, String cpf, String email, String senha) {
-        this.id = id;
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
