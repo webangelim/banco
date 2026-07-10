@@ -1,5 +1,6 @@
 package com.angelim.banco.usuario;
 
+import com.angelim.banco.conta.Conta;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -32,7 +33,10 @@ public class Usuario {
     @Column(nullable = false, length = 60)
     private String senha;
 
-    public Usuario(UUID id, String cpf, String email, String senha) {
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Conta conta;
+
+    public Usuario(String cpf, String email, String senha) {
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
@@ -71,5 +75,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
     }
 }
